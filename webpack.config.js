@@ -10,7 +10,7 @@ const uglifyJsPlugin = require("uglifyjs-webpack-plugin");
 // });
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'js', 'app1'),
+  entry: { app1: path.join(__dirname, 'src', 'js', 'app1') },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -62,6 +62,18 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ],
+        exclude: path.resolve(__dirname, 'src/index.html')
       }
     ]
   },
@@ -71,11 +83,12 @@ module.exports = {
       filename: 'index.html',
       template: 'src/index.html'
     }),
-    new HtmlWebpackPlugin({
-      filename: 'users.html',
-      template: 'src/users.html',
-      chunks: []
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'users.html',
+    //   template: 'src/users.html',
+    //   // chunks: ['app1']
+    //   chunks: []
+    // }),
     //new webpack.optimize.UglifyJsPlugin({
     new uglifyJsPlugin({
       sourceMap: true
