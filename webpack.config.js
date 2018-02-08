@@ -3,12 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-//const webpack = require('webpack');
 const uglifyJsPlugin = require("uglifyjs-webpack-plugin");
-
-// var extractPlugin = new ExtractTextPlugin({
-//   filename: 'main.css'
-// });
 
 module.exports = {
   entry: { app1: path.join(__dirname, 'src', 'js', 'app1') },
